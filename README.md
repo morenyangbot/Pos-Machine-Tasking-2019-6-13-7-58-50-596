@@ -1,3 +1,5 @@
+![](./refs/pos-taskings.png)
+
 # Requirement
 
 A cash register (POS) system is used in the store for settlement of the store. This cashier will settle and print the receipt (Receipt) according to the item(Item) in the customer's shopping cart (Cart) at the time of settlement.
@@ -47,3 +49,4 @@ If an error happened while creating a receipt. This function should return an er
 2. Please declare all the methods according to your diagram.
 3. Please write tests according to the task diagram
 4. Please repeat step 3 until all functions are implemented.
+
