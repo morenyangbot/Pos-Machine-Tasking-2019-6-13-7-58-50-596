@@ -16,6 +16,31 @@ function verifyItems(items, dataBase) {
     return !items.some(item => !validItems.includes(item))
 }
 
+function calculateItemsAndPrices(items, dataBase) {
+    const settlementItems = [];
+    let total = 0;
+
+    items.forEach(itemID => {
+        const itemSettled = settlementItems.find(item => item.detail.id === itemID);
+        if (!itemSettled) {
+            const itemDetail = dataBase.find(DBItem => DBItem.id === itemID)
+            settlementItems.push({
+                detail: itemDetail,
+                count: 1,
+                amount: itemDetail.price
+            })
+            total += itemDetail.price
+        } else {
+            itemSettled.count = itemSettled.count + 1
+            itemSettled.amount = itemSettled.amount + itemSettled.detail.price
+            total += itemSettled.detail.price
+        }
+    });
+
+    return { settlementItems, amount: total }
+}
+
 module.exports = {
-    verifyItems
+    verifyItems,
+    calculateItemsAndPrices
 }
