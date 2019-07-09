@@ -40,7 +40,20 @@ function calculateItemsAndPrices(items, dataBase) {
     return { settlementItems, amount: total }
 }
 
+function getReceiptText(isItemsValid, settlementItems, amount) {
+    if (!isItemsValid) {
+        return '[ERROR]: Item id illegal'
+    }
+    let str = 'Receipts\n------------------------------------------------------------\n'
+    settlementItems.forEach(item => {
+        str += `${item.detail.name}\t\t${item.count}\t${item.amount}\n`
+    })
+    str += `------------------------------------------------------------\nPrice: ${amount}`
+    return str
+}
+
 module.exports = {
     verifyItems,
-    calculateItemsAndPrices
+    calculateItemsAndPrices,
+    getReceiptText
 }
