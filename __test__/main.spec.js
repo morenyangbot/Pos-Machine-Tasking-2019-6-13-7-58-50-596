@@ -25,3 +25,33 @@ describe('Item Valid Checking', () => {
         expect(posMachine.verifyItems(['0001', '1111'], DATA_BASE)).toBe(false)
     })
 })
+
+describe('Calculate Items And Prices Checking', () => {
+    it('Should pickup one Fanta item and calculate amount as 12 in CalculateItemsAndPrices when call [0010]', () => {
+        expect(posMachine.calculateItemsAndPrices(['0010'], DATA_BASE)).toStrictEqual({
+            settlementItems: [{
+                detail: { "id": "0010", "name": "Fanta", "price": 12 },
+                count: 1,
+                amount: 12
+            }],
+            amount: 12
+        })
+    })
+
+    it('Should pickup two Fanta and one Coca Cola item and '
+        + 'calculate amount as 27 in CalculateItemsAndPrices when call [0010]', () => {
+            expect(posMachine.calculateItemsAndPrices(['0010', '0001', '0010'], DATA_BASE)).toStrictEqual({
+                settlementItems: [{
+                    detail: { "id": "0010", "name": "Fanta", "price": 12 },
+                    count: 2,
+                    amount: 24
+                },
+                {
+                    detail: { "id": "0001", "name": "Coca Cola", "price": 3 },
+                    count: 1,
+                    amount: 3
+                }],
+                amount: 27
+            })
+        })
+})
