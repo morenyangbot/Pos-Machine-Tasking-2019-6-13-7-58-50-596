@@ -52,8 +52,19 @@ function getReceiptText(isItemsValid, settlementItems, amount) {
     return str
 }
 
+function printReceipt(items, dataBase) {
+    const verifyStatus = verifyItems(items, dataBase);
+    if(!verifyStatus) {
+        return getReceiptText(verifyStatus)
+    } else {
+        const {settlementItems, amount} = calculateItemsAndPrices(items, dataBase)
+        return getReceiptText(true, settlementItems, amount)
+    }
+}
+
 module.exports = {
     verifyItems,
     calculateItemsAndPrices,
-    getReceiptText
+    getReceiptText,
+    printReceipt
 }
