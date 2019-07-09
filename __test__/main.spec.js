@@ -39,7 +39,7 @@ describe('Calculate Items And Prices Checking', () => {
     })
 
     it('Should pickup two Fanta and one Coca Cola item and '
-        + 'calculate amount as 27 in CalculateItemsAndPrices when call [0010]', () => {
+        + 'calculate amount as 27 in CalculateItemsAndPrices when call [0010, 0001, 0010]', () => {
             expect(posMachine.calculateItemsAndPrices(['0010', '0001', '0010'], DATA_BASE)).toStrictEqual({
                 settlementItems: [{
                     detail: { "id": "0010", "name": "Fanta", "price": 12 },
@@ -79,3 +79,19 @@ describe('Receipt Text Check', () => {
         )
     })
 })
+
+describe('Print Receipt Check', () => {
+    it('Should print recept text in getReceiptText when call [0010, 0001, 0010] and DATA_BASE', () => {
+        expect(posMachine.printReceipt(['0010', '0001', '0010'], DATA_BASE)).toBe(`Receipts\n`
+            + `------------------------------------------------------------\n`
+            + `Fanta\t\t2\t24\nCoca Cola\t\t1\t3\n`
+            + `------------------------------------------------------------\nPrice: 27`)
+    })
+
+    it('Should print error message in get ReceiptText when call [1111] and DATA_BASE', () => {
+        expect(posMachine.printReceipt(['1111'], DATA_BASE)).toEqual(
+            expect.stringMatching(/^\[ERROR\]:/)
+        )
+    })
+})
+
