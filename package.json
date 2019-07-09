@@ -1,0 +1,12 @@
+{
+  "name": "pos-machine",
+  "version": "0.1.0",
+  "main": "main.js",
+  "repository": "https://github.com/morenyangbot/Pos-Machine-Tasking-2019-6-13-7-58-50-596.git",
+  "author": "Teng YANG <teng.yang@oocl.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
