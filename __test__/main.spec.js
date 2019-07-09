@@ -55,3 +55,27 @@ describe('Calculate Items And Prices Checking', () => {
             })
         })
 })
+
+describe('Receipt Text Check', () => {
+    it('Should print recept text in getReceiptText when giving correct arguments', () => {
+        expect(posMachine.getReceiptText(true, [{
+            detail: { "id": "0010", "name": "Fanta", "price": 12 },
+            count: 2,
+            amount: 24
+        },
+        {
+            detail: { "id": "0001", "name": "Coca Cola", "price": 3 },
+            count: 1,
+            amount: 3
+        }], 27)).toBe(`Receipts\n`
+            + `------------------------------------------------------------\n`
+            + `Fanta\t\t2\t24\nCoca Cola\t\t1\t3\n`
+            + `------------------------------------------------------------\nPrice: 27`)
+    })
+
+    it('Should print error message in get ReceiptText when isItemsValid is false', () => {
+        expect(posMachine.getReceiptText(false, undefined, undefined)).toEqual(
+            expect.stringMatching(/^\[ERROR\]:/)
+        )
+    })
+})
