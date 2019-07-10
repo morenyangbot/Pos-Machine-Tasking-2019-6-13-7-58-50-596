@@ -69,7 +69,7 @@ describe('Receipt Text Check', () => {
             amount: 3
         }], 27)).toBe(`Receipts\n`
             + `------------------------------------------------------------\n`
-            + `Fanta\t\t2\t24\nCoca Cola\t\t1\t3\n`
+            + `Fanta\t\t12\t2\nCoca Cola\t\t3\t1\n`
             + `------------------------------------------------------------\nPrice: 27`)
     })
 
@@ -84,7 +84,7 @@ describe('Print Receipt Check', () => {
     it('Should print recept text in getReceiptText when call [0010, 0001, 0010] and DATA_BASE', () => {
         expect(posMachine.printReceipt(['0010', '0001', '0010'], DATA_BASE)).toBe(`Receipts\n`
             + `------------------------------------------------------------\n`
-            + `Fanta\t\t2\t24\nCoca Cola\t\t1\t3\n`
+            + `Fanta\t\t12\t2\nCoca Cola\t\t3\t1\n`
             + `------------------------------------------------------------\nPrice: 27`)
     })
 
