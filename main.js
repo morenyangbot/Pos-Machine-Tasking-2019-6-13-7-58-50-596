@@ -33,7 +33,7 @@ const getReceiptText = (isItemsValid, settlementItems, amount) => {
     }
     let str = 'Receipts\n------------------------------------------------------------\n'
     settlementItems.forEach(item => {
-        str += `${item.detail.name}\t\t${item.count}\t${item.amount}\n`
+        str += `${item.detail.name}\t\t${item.detail.price}\t${item.count}\n`
     })
     str += `------------------------------------------------------------\nPrice: ${amount}`
     return str
