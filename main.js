@@ -1,9 +1,9 @@
-function verifyItems(items, dataBase) {
+const verifyItems = (items, dataBase) => {
     const validItems = dataBase.map(DBItem => DBItem.id);
     return !items.some(item => !validItems.includes(item))
 }
 
-function calculateItemsAndPrices(items, dataBase) {
+const calculateItemsAndPrices = (items, dataBase) => {
     const settlementItems = [];
     let total = 0;
 
@@ -27,7 +27,7 @@ function calculateItemsAndPrices(items, dataBase) {
     return { settlementItems, amount: total }
 }
 
-function getReceiptText(isItemsValid, settlementItems, amount) {
+const getReceiptText = (isItemsValid, settlementItems, amount) => {
     if (!isItemsValid) {
         return '[ERROR]: Item id illegal'
     }
@@ -39,12 +39,12 @@ function getReceiptText(isItemsValid, settlementItems, amount) {
     return str
 }
 
-function printReceipt(items, dataBase) {
+const printReceipt = (items, dataBase) => {
     const verifyStatus = verifyItems(items, dataBase);
-    if(!verifyStatus) {
+    if (!verifyStatus) {
         return getReceiptText(verifyStatus)
     } else {
-        const {settlementItems, amount} = calculateItemsAndPrices(items, dataBase)
+        const { settlementItems, amount } = calculateItemsAndPrices(items, dataBase)
         return getReceiptText(true, settlementItems, amount)
     }
 }
